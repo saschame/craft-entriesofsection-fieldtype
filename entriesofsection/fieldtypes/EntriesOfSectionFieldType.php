@@ -29,9 +29,11 @@ class EntriesOfSectionFieldType extends BaseElementFieldType
 
     public function getInputTemplateVariables($name, $criteria)
     {
-        $variables = parent::getInputTemplateVariables($name, $criteria);
 
-        if ($this->elementType === 'Entry' && $this->element) {
+        if ($this->elementType === 'Entry' && $this->element && !empty($this->element->elementType) && $this->element->elementType === 'Entry') {
+
+            $variables = parent::getInputTemplateVariables($name, $criteria);
+
             $element = $this->element;
             $section = $element->getSection();
 
@@ -41,8 +43,14 @@ class EntriesOfSectionFieldType extends BaseElementFieldType
 
                 $this->allowMultipleSources = false;
             }
+
+            return $variables;
         }
 
-        return $variables;
+        else {
+            $variables = parent::getInputTemplateVariables($name, $criteria);
+
+            return $variables;
+        }
     }
 }
