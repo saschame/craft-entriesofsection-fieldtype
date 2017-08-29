@@ -29,25 +29,45 @@ class EntriesOfSectionFieldType extends BaseElementFieldType
 
     public function getInputTemplateVariables($name, $criteria)
     {
-
-        if ($this->elementType === 'Entry' && $this->element && !empty($this->element->elementType) && $this->element->elementType === 'Entry') {
-
+        if (
+            $this->elementType === 'Entry' &&
+            $this->element &&
+            !empty($this->element->elementType) &&
+            $this->element->elementType === 'Entry'
+        ) {
             $variables = parent::getInputTemplateVariables($name, $criteria);
 
             $element = $this->element;
             $section = $element->getSection();
-
             if ($section) {
                 $variables['criteria']['sectionId'][] = $section->id;
                 $variables['sources'] = ['section:' . $section->id];
-
-                $this->allowMultipleSources = false;
             }
 
             return $variables;
-        }
+        } else if (
+            $this->elementType === 'Entry' &&
+            $this->element &&
+            !empty($this->element->elementType) &&
+            $this->element->elementType === 'SuperTable_Block'
+        ) {
+            $handle = $this->getClassHandle();
+            $owner_id = $this->element->getAttribute('ownerId');
+            $owner = $this->element->getOwner();
 
-        else {
+            if ($handle === 'EntriesOfSection' && $owner) {
+                $section = $owner->getSection();
+                if ($section) {
+                    $settings = $this->getSettings();
+                    $settings->setAttribute('sources', ['section:' . $section->id]);
+                    $this->setSettings($settings);
+                }
+            }
+            $variables = parent::getInputTemplateVariables($name, $criteria);
+            $variables['sourceElementId'] = $owner_id;
+
+            return $variables;
+        } else {
             $variables = parent::getInputTemplateVariables($name, $criteria);
 
             return $variables;

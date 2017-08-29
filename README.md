@@ -16,7 +16,7 @@ Entries of Section works on Craft 2.4.x and Craft 2.5.x.
 
 This field type is an extension of the built in `Entries` field type and has been shamelessly ripped-off of [n43.me](http://n43.me/)'s [Entries Subset plugin](https://github.com/nfourtythree/craft-entriessubset).
 
-It restricts selectable entries of the `Entry`-fieldtype to entries of the currently active section.
+It restricts selectable entries of the `Entry`-fieldtype to entries of the currently active entries section.
 
 
 * Initial release

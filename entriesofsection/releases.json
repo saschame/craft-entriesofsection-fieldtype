@@ -1,7 +1,15 @@
 [
     {
+        "version": "1.0.1",
+        "downloadUrl": "https://github.com/saschame/craft-entriesofsection-fieldtype/archive/v1.0.1.zip",
+        "date": "2017-08-29T16:00:00.111Z",
+        "notes": [
+            "Initial release"
+        ]
+    },
+    {
         "version": "1.0.0",
-        "downloadUrl": "https://github.com/saschame/craft-entriesofsection-fieldtype/archive/master.zip",
+        "downloadUrl": "https://github.com/saschame/craft-entriesofsection-fieldtype/archive/v1.0.0.zip",
         "date": "2017-08-24T12:00:00.111Z",
         "notes": [
             "Initial release"
